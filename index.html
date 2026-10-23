@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17171c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Social Maker">
+<link rel="manifest" href="manifest.json">
+<title>Social Maker — Personal Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#101014;--panel:#19191f;--panel2:#22222b;--line:#343440;--text:#f5f5f7;--muted:#aaaab8;--accent:#b7a4ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 12px;border-radius:12px}button.primary{background:var(--accent);color:#17131f;border-color:transparent;font-weight:750}button.danger{border-color:#75434a;color:#ffc4c9}button:active{transform:scale(.99)}button:disabled{opacity:.4;cursor:not-allowed}
+header{position:sticky;top:0;z-index:10;background:#101014ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:calc(11px + env(safe-area-inset-top)) 14px 11px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-size:18px;font-weight:850;letter-spacing:-.4px}.brand span{color:var(--accent)}.small{font-size:12px;color:var(--muted)}main{max-width:1250px;margin:auto;padding:14px;display:grid;gap:14px;grid-template-columns:minmax(0,1fr);padding-bottom:45px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;min-width:0}h2{font-size:16px;margin:0 0 12px}h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:20px 0 8px}.tabs{display:flex;gap:6px;overflow:auto;padding-bottom:10px}.tab{white-space:nowrap}.tab.active{border-color:var(--accent);background:#332c49}.section{display:none}.section.active{display:block}.platforms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.platform{padding:8px 3px;font-size:11px;min-height:57px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.platform.active{border-color:var(--accent);background:#332c49}.platform .emoji{font-size:18px}
+label{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}input,textarea,select{width:100%;border:1px solid var(--line);background:#111116;color:var(--text);border-radius:10px;padding:10px 11px;outline:none;min-width:0}input:focus,textarea:focus,select:focus{border-color:var(--accent)}textarea{resize:vertical;min-height:70px}input[type=color]{height:42px;padding:4px}input[type=file]{font-size:12px;padding:8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.actions button{flex:1}.preview-wrap{background:#0c0c10;border:1px dashed #3b3b48;border-radius:15px;padding:12px;display:flex;justify-content:center;align-items:flex-start;min-height:240px;overflow:auto}.post{width:100%;max-width:430px;background:white;color:#17171b;border-radius:8px;overflow:hidden;box-shadow:0 12px 35px #0005;font-family:Arial,Helvetica,sans-serif;--post-accent:#b7a4ff}.post .muted{color:#73737e}.post .avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8b5ce,#a7baff);font-weight:800;flex-shrink:0;color:#33243a;overflow:hidden}.post .avatar img{width:100%;height:100%;object-fit:cover}.post .p-head{display:flex;align-items:center;gap:9px;padding:12px}.post .who{font-size:14px;font-weight:700}.post .handle{font-size:12px;color:#777;overflow-wrap:anywhere}.post .content{padding:0 12px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}.post .media{min-height:100px;background:linear-gradient(135deg,#e8d8ff,#f9d9e5,#d8e9ff);display:flex;align-items:center;justify-content:center;color:#443653;text-align:center;padding:0;font-size:20px;font-weight:700;white-space:pre-wrap;overflow:hidden}.post .media img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:#111}.post .media .placeholder{padding:25px;overflow-wrap:anywhere}.post .stats{padding:10px 12px;border-top:1px solid #eee;font-size:12px;color:#666;overflow-wrap:anywhere}.post .reply{padding:9px 12px;border-top:1px solid #eee;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.post .actionsline{padding:9px 12px;display:flex;justify-content:space-between;gap:8px;border-top:1px solid #eee;color:#555;font-size:13px}.post .thread{border-top:1px solid #eee;padding:10px 12px}.post .msg{display:flex;gap:8px;margin:9px 0;align-items:flex-start}.post .msg .avatar{width:30px;height:30px;font-size:11px}.post .msgbody{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}.post .msgname{font-weight:700;margin-right:5px}.post .msgtime{color:#888;font-size:10px}.post.instagram .media{aspect-ratio:1/1}.post.instagram .actionsline{font-size:18px}.post.x{border-radius:0}.post.x .p-head{padding-bottom:5px}.post.x .content{font-size:16px;line-height:1.4;padding-left:59px}.post.x .media{margin-left:59px;width:calc(100% - 71px);border-radius:12px;min-height:90px}.post.x .stats{margin-left:59px;border:0}.post.tumblr{border-radius:0;border:1px solid #ddd}.post.tumblr .content{font-size:15px;line-height:1.5}.post.tiktok{background:#16161c;color:#f5f5f5}.post.tiktok .handle,.post.tiktok .muted{color:#bbb}.post.tiktok .media{min-height:240px;background:linear-gradient(155deg,#20202b,#53435e,#17171c);color:#fff}.post.tiktok .stats,.post.tiktok .actionsline,.post.tiktok .reply,.post.tiktok .thread{border-color:#383842;color:#ddd}.post.facebook{border-radius:8px}.post.whatsapp{background:#e5ddd5;border-radius:12px;padding:12px;color:#1b1b1b}.post.whatsapp .p-head{display:none}.post.whatsapp .bubble{background:#d9fdd3;border-radius:12px 12px 2px 12px;padding:12px;margin:7px 0 7px 12%;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}.post.whatsapp .bubble.other{margin:7px 12% 7px 0;background:#fff}.post.whatsapp .chatmeta{text-align:right;font-size:10px;color:#55765c;margin-top:5px}.post.discord{background:#36393f;color:#f2f3f5;border-radius:8px}.post.discord .handle,.post.discord .muted{color:#b9bbbe}.post.discord .content{padding-left:59px;font-size:14px}.post.discord .p-head{align-items:flex-start}.post.discord .avatar{border-radius:50%;background:#5865f2;color:#fff}.post.discord .stats,.post.discord .thread{border-color:#4b4d54;color:#c7c9cc}.post.reddit{border:1px solid #d6d9dc;border-radius:8px}.post.reddit .vote{font-size:12px;color:#666}.post.reddit .p-head{padding-bottom:6px}.post.reddit .title{font-size:19px;font-weight:700;padding:0 12px 8px}.post.reddit .content{font-size:14px}.post.reddit .stats{border-top:1px solid #eee}
+.list{display:grid;gap:7px}.item{border:1px solid var(--line);background:#121217;border-radius:12px;padding:10px;display:grid;gap:7px}.itemtop{display:flex;align-items:center;gap:8px}.itemtop strong{font-size:13px;flex:1}.itemtop button{padding:6px 9px}.empty{color:var(--muted);font-size:13px;padding:10px;border:1px dashed var(--line);border-radius:10px}.rowline{display:flex;gap:8px;align-items:center}.rowline>*{flex:1}.profile-chip{display:flex;gap:9px;align-items:center;padding:9px;border:1px solid var(--line);border-radius:12px;margin:7px 0}.profile-chip .avatar{width:35px;height:35px;border-radius:50%;background:#b7a4ff;color:#17131f;display:grid;place-items:center;font-weight:800;flex-shrink:0}.profile-chip .meta{flex:1;min-width:0}.profile-chip .meta strong,.profile-chip .meta small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.profile-chip small{color:var(--muted)}#toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#e4ddff;color:#17131f;padding:10px 15px;border-radius:12px;font-weight:750;box-shadow:0 5px 25px #0006;z-index:30;display:none;max-width:90%;text-align:center}.notice{background:#252131;border:1px solid #4c4168;border-radius:12px;padding:10px;font-size:12px;color:#e4ddff;margin:10px 0}.hidden{display:none!important}footer{text-align:center;color:var(--muted);font-size:12px;padding:0 18px 28px}
+@media(min-width:900px){main{grid-template-columns:minmax(360px,460px) minmax(0,1fr);align-items:start}.preview-panel{position:sticky;top:82px;max-height:calc(100vh - 100px);overflow:auto}.platforms{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">✦ Social <span>Maker</span></div><div class="small">Personal studio · local-first · no publishing</div></div><button id="newBtn">＋ New project</button></header>
+<main>
+<section class="panel">
+<div class="tabs" role="tablist">
+<button class="tab active" data-tab="editor">Post editor</button><button class="tab" data-tab="profiles">Profiles</button><button class="tab" data-tab="projects">Projects</button>
+</div>
+<div class="section active" id="section-editor">
+<h2>Choose a template</h2><div class="platforms" id="platforms"></div>
+<h3>Post details</h3>
+<label for="projectName">Project / post name</label><input id="projectName" value="A little life update" maxlength="120">
+<div class="two"><div><label for="platformTitle">Post title</label><input id="platformTitle" value="A little life update" maxlength="180"></div><div><label for="time">Timestamp</label><input id="time" value="2h" maxlength="40"></div></div>
+<label for="bodyText">Caption / message</label><textarea id="bodyText" maxlength="4000">Some moments deserve to be kept forever ✨</textarea>
+<label for="mediaText">Image placeholder text (if no photo)</label><input id="mediaText" value="your photo goes here" maxlength="180">
+<label for="photoInput">Attach photo from your device</label><input id="photoInput" type="file" accept="image/*">
+<div class="actions"><button id="removePhotoBtn">Remove photo</button><button id="mediaToggleBtn">Hide media</button></div><div id="photoStatus" class="small">No photo attached.</div>
+<div class="two"><div><label for="likes">Likes / reactions / points</label><input id="likes" value="1,284" maxlength="40"></div><div><label for="accent">Accent color</label><input id="accent" type="color" value="#b7a4ff"></div></div>
+<label for="comments">Featured comment / reply</label><textarea id="comments" maxlength="1500">This is so good!! 💜</textarea>
+<div class="two"><div><label for="displayProfile">Posting profile</label><select id="displayProfile"></select></div><div><label for="showThread">Show conversation</label><select id="showThread"><option value="yes">Yes</option><option value="no">No</option></select></div></div>
+<h3>Conversation builder</h3><div class="small">Add replies, comments or chat messages. Each message can use a saved profile.</div>
+<div class="two"><div><label for="msgProfile">Message author</label><select id="msgProfile"></select></div><div><label for="msgTime">Message time</label><input id="msgTime" value="now" maxlength="40"></div></div>
+<label for="msgText">Message text</label><textarea id="msgText" placeholder="Write a comment or message…"></textarea>
+<div class="actions"><button class="primary" id="addMessageBtn">＋ Add message</button><button id="clearMessagesBtn">Clear conversation</button></div>
+<div id="messagesList" class="list" style="margin-top:9px"></div>
+<div class="actions"><button class="primary" id="saveBtn">Save project</button><button id="exportImageBtn">Export post image</button></div>
+<div class="actions"><button id="exportBackupBtn">Export all data</button><button id="importBackupBtn">Import backup</button><input id="backupInput" type="file" accept="application/json,.json" hidden></div>
+<p class="small">Projects and profiles are stored in this browser on this device. Export backups regularly. No account, backend, or auto-publishing.</p>
+</div>
+<div class="section" id="section-profiles">
+<h2>Reusable fictional profiles</h2><div class="notice">Create characters once, then reuse them across posts and conversations. Avatar images are stored locally with your profile.</div>
+<input id="profileId" type="hidden">
+<label for="profileName">Display name</label><input id="profileName" maxlength="80" placeholder="e.g. Alex Morgan">
+<div class="two"><div><label for="profileHandle">Username / handle</label><input id="profileHandle" maxlength="80" placeholder="e.g. alexmorgan"></div><div><label for="profileAvatar">Initials / emoji</label><input id="profileAvatar" maxlength="8" placeholder="AM"></div></div>
+<label for="profileBio">Bio (optional)</label><textarea id="profileBio" maxlength="300" placeholder="A short fictional bio…"></textarea>
+<label for="profilePhoto">Profile photo (optional)</label><input id="profilePhoto" type="file" accept="image/*">
+<div class="actions"><button class="primary" id="saveProfileBtn">Save profile</button><button id="clearProfileFormBtn">Clear form</button></div>
+<h3>Your profiles</h3><div id="profilesList" class="list"></div>
+</div>
+<div class="section" id="section-projects">
+<h2>Projects library</h2><div class="notice">Each project stores its selected template, text, attached image and conversation. Saved locally on this device.</div>
+<label for="projectFilter">Find a project</label><input id="projectFilter" placeholder="Search project names…">
+<div class="actions"><button id="newProjectBtn">＋ Blank project</button><button id="exportAllBtn">Export backup</button></div>
+<h3>Saved projects</h3><div id="projectsList" class="list"></div>
+</div>
+</section>
+<section class="panel preview-panel">
+<h2>Live preview <span class="small" id="previewLabel">· Instagram</span></h2>
+<div class="preview-wrap"><div id="preview" class="post instagram"></div></div>
+<p class="small" style="margin-top:12px">Personal mockups only. Platform layouts are approximations, not official interfaces. Exported images are rendered locally.</p>
+</section>
+</main>
+<footer>Social Maker · fictional posts, storyboards and personal projects · nothing is published automatically.</footer>
+<div id="toast" role="status"></div>
+<script>
+const platforms=[
+{id:"instagram",name:"Instagram",icon:"📸"},{id:"x",name:"X / Twitter",icon:"𝕏"},{id:"tumblr",name:"Tumblr",icon:"✦"},{id:"tiktok",name:"TikTok",icon:"♪"},
+{id:"facebook",name:"Facebook",icon:"f"},{id:"discord",name:"Discord",icon:"☁"},{id:"whatsapp",name:"WhatsApp",icon:"☏"},{id:"reddit",name:"Reddit",icon:"👽"}
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const defaultProfile={id:"profile-default",name:"Alex Morgan",handle:"alexmorgan",avatar:"AM",bio:"",photo:""};
+let state={platform:"instagram",projectId:null,photo:"",showMedia:true,messages:[],profiles:[],projects:[],profilePhoto:""};
+let db;
+function toast(s){$("toast").textContent=s;$("toast").style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$("toast").style.display="none",2400)}
+function openDB(){return new Promise((resolve,reject)=>{if(!("indexedDB" in window)){resolve(null);return}const req=indexedDB.open("SocialMakerLocalDB",1);req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains("kv"))d.createObjectStore("kv")};req.onsuccess=()=>resolve(req.result);req.onerror=()=>resolve(null)})}
+function dbGet(key){return new Promise(resolve=>{if(!db){try{resolve(JSON.parse(localStorage.getItem("sm_"+key)||"null"))}catch{resolve(null)}return}try{const r=db.transaction("kv","readonly").objectStore("kv").get(key);r.onsuccess=()=>resolve(r.result??null);r.onerror=()=>resolve(null)}catch{resolve(null)}})}
+function dbSet(key,val){return new Promise(resolve=>{if(!db){try{localStorage.setItem("sm_"+key,JSON.stringify(val));resolve(true)}catch{resolve(false)}return}try{const tx=db.transaction("kv","readwrite");tx.objectStore("kv").put(val,key);tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false)}catch{resolve(false)}})}
+function currentProfile(){return state.profiles.find(p=>p.id===$("displayProfile").value)||state.profiles[0]||defaultProfile}
+function dataFromForm(){return {projectName:$("projectName").value,platformTitle:$("platformTitle").value,time:$("time").value,bodyText:$("bodyText").value,mediaText:$("mediaText").value,likes:$("likes").value,accent:$("accent").value,comments:$("comments").value,displayProfile:$("displayProfile").value,showThread:$("showThread").value,showMedia:state.showMedia,photo:state.photo,platform:state.platform,messages:state.messages.map(m=>({...m}))}}
+function setForm(d){$("projectName").value=d.projectName??"Untitled project";$("platformTitle").value=d.platformTitle??"";$("time").value=d.time??"now";$("bodyText").value=d.bodyText??"";$("mediaText").value=d.mediaText??"Image goes here";$("likes").value=d.likes??"0";$("accent").value=d.accent??"#b7a4ff";$("comments").value=d.comments??"";$("showThread").value=d.showThread??"yes";state.showMedia=d.showMedia!==false;state.photo=d.photo||"";state.platform=d.platform||"instagram";state.messages=Array.isArray(d.messages)?d.messages:[];fillProfileSelects();if(d.displayProfile&&state.profiles.some(p=>p.id===d.displayProfile))$("displayProfile").value=d.displayProfile;updateMediaButton();updatePhotoStatus();renderPlatforms();renderMessages();render()}
+function renderPlatforms(){$("platforms").innerHTML=platforms.map(p=>`<button class="platform ${p.id===state.platform?"active":""}" data-platform="${p.id}"><span class="emoji">${p.icon}</span>${p.name}</button>`).join("");document.querySelectorAll("[data-platform]").forEach(b=>b.onclick=()=>{state.platform=b.dataset.platform;renderPlatforms();render()})}
+function fillProfileSelects(){const opts=state.profiles.map(p=>`<option value="${esc(p.id)}">${esc(p.name)} (@${esc(p.handle)})</option>`).join("");const old=$("displayProfile").value,oldMsg=$("msgProfile").value;$("displayProfile").innerHTML=opts;$("msgProfile").innerHTML=opts;if(state.profiles.some(p=>p.id===old))$("displayProfile").value=old;if(state.profiles.some(p=>p.id===oldMsg))$("msgProfile").value=oldMsg}
+function avatarHTML(p,size){const label=esc(p?.avatar||p?.name?.slice(0,2)||"🙂");return `<div class="avatar">${p?.photo?`<img src="${p.photo}" alt="">`:label}</div>`}
+function mediaHTML(){if(!state.showMedia)return"";return `<div class="media">${state.photo?`<img src="${state.photo}" alt="Attached fictional post image">`:`<div class="placeholder">${esc($("mediaText").value||"Image placeholder")}</div>`}</div>`}
+function renderMessages(){
+ const list=$("messagesList");if(!state.messages.length){list.innerHTML='<div class="empty">No conversation messages yet. Add a comment or chat message above.</div>';return}
+ list.innerHTML=state.messages.map((m,i)=>{const p=state.profiles.find(x=>x.id===m.profileId)||defaultProfile;return `<div class="item"><div class="itemtop"><strong>${esc(p.name)} <span class="small">@${esc(p.handle)} · ${esc(m.time)}</span></strong><button data-up="${i}" aria-label="Move message up">↑</button><button data-down="${i}" aria-label="Move message down">↓</button><button data-delmsg="${i}" class="danger">×</button></div><div>${esc(m.text)}</div></div>`}).join("");
+ document.querySelectorAll("[data-delmsg]").forEach(b=>b.onclick=()=>{state.messages.splice(+b.dataset.delmsg,1);renderMessages();render()});
+ document.querySelectorAll("[data-up]").forEach(b=>b.onclick=()=>{let i=+b.dataset.up;if(i>0){[state.messages[i-1],state.messages[i]]=[state.messages[i],state.messages[i-1]];renderMessages();render()}});
+ document.querySelectorAll("[data-down]").forEach(b=>b.onclick=()=>{let i=+b.dataset.down;if(i<state.messages.length-1){[state.messages[i+1],state.messages[i]]=[state.messages[i],state.messages[i+1]];renderMessages();render()}});
+}
+function conversationHTML(platform){
+ if($("showThread").value!=="yes"||!state.messages.length)return"";
+ const msgs=state.messages.map(m=>{const p=state.profiles.find(x=>x.id===m.profileId)||defaultProfile;return `<div class="msg">${avatarHTML(p)}<div class="msgbody"><span class="msgname">${esc(p.name)}</span><span class="msgtime">${esc(m.time)}</span><div>${esc(m.text)}</div></div></div>`}).join("");
+ if(platform==="whatsapp")return state.messages.map(m=>{const p=state.profiles.find(x=>x.id===m.profileId)||defaultProfile;const isOwner=p.id===$("displayProfile").value;return `<div class="bubble ${isOwner?"":"other"}">${esc(m.text)}<div class="chatmeta">${esc(m.time)} ${isOwner?"✓✓":""}</div></div>`}).join("");
+ return `<div class="thread">${msgs}</div>`;
+}
+function render(){
+ const d=dataFromForm(),p=state.profiles.find(x=>x.id===d.displayProfile)||defaultProfile,platform=state.platform;
+ $("previewLabel").textContent="· "+(platforms.find(x=>x.id===platform)?.name||platform);
+ const head=`<div class="p-head">${avatarHTML(p)}<div style="min-width:0"><div class="who">${esc(p.name)}</div><div class="handle">@${esc(p.handle)} · ${esc(d.time)}</div></div><div style="margin-left:auto;color:inherit;opacity:.65">•••</div></div>`;
+ const media=mediaHTML(),thread=conversationHTML(platform);
+ let html="";
+ if(platform==="whatsapp"){
+  html=`<div style="font-size:12px;text-align:center;color:#52665b;padding:3px 0 8px">🔒 Messages are private (mockup)</div><div class="bubble">${esc(d.bodyText)}<div class="chatmeta">${esc(d.time)} ✓✓</div></div>${thread|| (d.comments?`<div class="bubble other">${esc(d.comments)}<div class="chatmeta">${esc(d.time)}</div></div>`:"")}`;
+ }else if(platform==="discord"){
+  html=`<div style="padding:10px 12px;border-bottom:1px solid #4b4d54;font-weight:700"># general</div>${head}<div class="content">${esc(d.bodyText)}</div>${media}<div class="stats">♡ ${esc(d.likes)} reactions</div>${thread}`;
+ }else if(platform==="reddit"){
+  html=`<div class="p-head"><div class="vote">▲　●　▼</div><div class="handle">r/fictionalposts · Posted by u/${esc(p.handle)} · ${esc(d.time)}</div></div><div class="title">${esc(d.platformTitle)}</div><div class="content">${esc(d.bodyText)}</div>${media}<div class="stats">↑ ${esc(d.likes)} points　 ·　 ${state.messages.length} comments</div>${thread}`;
+ }else{
+  const title=(platform==="tumblr"||platform==="facebook")&&d.platformTitle?`<div class="content" style="font-weight:700;padding-bottom:5px">${esc(d.platformTitle)}</div>`:"";
+  const actions=platform==="x"?`<div class="actionsline"><span>♧ Reply</span><span>↻ Repost</span><span>♡ ${esc(d.likes)}</span><span>⇧</span></div>`:platform==="tiktok"?`<div class="actionsline"><span>♡ ${esc(d.likes)}</span><span>◯ Comments</span><span>↗ Share</span></div>`:platform==="instagram"?`<div class="actionsline"><span>♡　◯　➤</span><span>▢</span></div>`:`<div class="actionsline"><span>♡ Like</span><span>↩ Comment</span><span>↗ Share</span></div>`;
+  html=`${head}${title}<div class="content">${esc(d.bodyText)}</div>${media}<div class="stats"><strong>${esc(d.likes)}</strong> ${platform==="x"?"likes":platform==="tumblr"?"notes":platform==="reddit"?"points":"likes"}${d.comments?`<br><span class="muted">${esc(d.comments)}</span>`:""}</div>${actions}${thread}`;
+ }
+ $("preview").className="post "+platform;$("preview").style.setProperty("--post-accent",d.accent);$("preview").innerHTML=html;
+}
+function updatePhotoStatus(){$("photoStatus").textContent=state.photo?"Photo attached (stored inside this project).":"No photo attached."}
+function updateMediaButton(){$("mediaToggleBtn").textContent=state.showMedia?"Hide media":"Show media"}
+function switchTab(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active",s.id==="section-"+name))}
+function clearProfileForm(){["profileId","profileName","profileHandle","profileAvatar","profileBio"].forEach(id=>$(id).value="");$("profilePhoto").value="";state.profilePhoto=""}
+async function saveProfile(){
+ const id=$("profileId").value||uid(),name=$("profileName").value.trim(),handle=$("profileHandle").value.trim().replace(/^@/,"");
+ if(!name||!handle){toast("Add a display name and username.");return}
+ const existing=state.profiles.find(p=>p.id===id);const profile={id,name,handle,avatar:$("profileAvatar").value.trim()||name.slice(0,2).toUpperCase(),bio:$("profileBio").value,photo:state.profilePhoto||(existing?.photo||"")};
+ const idx=state.profiles.findIndex(p=>p.id===id);if(idx>=0)state.profiles[idx]=profile;else state.profiles.push(profile);
+ if(await dbSet("profiles",state.profiles)){fillProfileSelects();renderProfiles();clearProfileForm();render();toast("Profile saved locally.")}else toast("Could not save profile. Export a backup and try again.")
+}
+function renderProfiles(){
+ const el=$("profilesList");if(!state.profiles.length){el.innerHTML='<div class="empty">No profiles yet.</div>';return}
+ el.innerHTML=state.profiles.map(p=>`<div class="profile-chip"><div class="avatar">${p.photo?`<img src="${p.photo}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:esc(p.avatar)}</div><div class="meta"><strong>${esc(p.name)}</strong><small>@${esc(p.handle)}${p.bio?" · "+esc(p.bio):""}</small></div><button data-editprofile="${esc(p.id)}">Edit</button>${p.id!=="profile-default"?`<button data-delprofile="${esc(p.id)}" class="danger">×</button>`:""}</div>`).join("");
+ document.querySelectorAll("[data-editprofile]").forEach(b=>b.onclick=()=>{const p=state.profiles.find(x=>x.id===b.dataset.editprofile);if(!p)return;$("profileId").value=p.id;$("profileName").value=p.name;$("profileHandle").value=p.handle;$("profileAvatar").value=p.avatar;$("profileBio").value=p.bio||"";state.profilePhoto=p.photo||"";switchTab("profiles");window.scrollTo({top:0,behavior:"smooth"})});
+ document.querySelectorAll("[data-delprofile]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this profile? Existing messages will use the default profile if it is no longer available."))return;state.profiles=state.profiles.filter(p=>p.id!==b.dataset.delprofile);await dbSet("profiles",state.profiles);fillProfileSelects();renderProfiles();renderMessages();render();toast("Profile deleted.")});
+}
+async function saveProject(){
+ const d=dataFromForm(),id=state.projectId||uid();const project={id,name:d.projectName.trim()||"Untitled project",platform:state.platform,updated:new Date().toISOString(),data:d};
+ const idx=state.projects.findIndex(p=>p.id===id);if(idx>=0)state.projects[idx]=project;else state.projects.unshift(project);
+ if(await dbSet("projects",state.projects)){state.projectId=id;renderProjects();toast("Project saved on this device.")}else toast("Storage failed. Export a backup and try a smaller photo.")
+}
+function loadProject(id){const p=state.projects.find(x=>x.id===id);if(!p)return;state.projectId=p.id;setForm(p.data);$("projectName").value=p.name;switchTab("editor");toast("Project loaded.")}
+function renderProjects(){
+ const filter=($("projectFilter")?.value||"").toLowerCase(),list=state.projects.filter(p=>p.name.toLowerCase().includes(filter));
+ const el=$("projectsList");if(!list.length){el.innerHTML='<div class="empty">No saved projects match. Save a project from the editor to see it here.</div>';return}
+ el.innerHTML=list.map(p=>`<div class="item"><div class="itemtop"><strong>${esc(p.name)}</strong><span class="small">${esc(platforms.find(x=>x.id===p.platform)?.name||p.platform)}</span></div><div class="small">Updated ${esc(new Date(p.updated).toLocaleString())}</div><div class="actions"><button data-loadproject="${esc(p.id)}" class="primary">Open</button><button data-copyproject="${esc(p.id)}">Duplicate</button><button data-deleteproject="${esc(p.id)}" class="danger">Delete</button></div></div>`).join("");
+ document.querySelectorAll("[data-loadproject]").forEach(b=>b.onclick=()=>loadProject(b.dataset.loadproject));
+ document.querySelectorAll("[data-copyproject]").forEach(b=>b.onclick=async()=>{const p=state.projects.find(x=>x.id===b.dataset.copyproject);if(!p)return;const copy=JSON.parse(JSON.stringify(p));copy.id=uid();copy.name=p.name+" copy";copy.updated=new Date().toISOString();state.projects.unshift(copy);await dbSet("projects",state.projects);renderProjects();toast("Project duplicated.")});
+ document.querySelectorAll("[data-deleteproject]").forEach(b=>b.onclick=async()=>{if(!confirm("Delete this project?"))return;state.projects=state.projects.filter(p=>p.id!==b.dataset.deleteproject);await dbSet("projects",state.projects);renderProjects();toast("Project deleted.")});
+}
+function blankProject(){state.projectId=null;setForm({projectName:"Untitled project",platformTitle:"",time:"now",bodyText:"",mediaText:"Add an image or text",likes:"0",accent:"#b7a4ff",comments:"",displayProfile:state.profiles[0]?.id,showThread:"yes",showMedia:true,photo:"",platform:"instagram",messages:[]});switchTab("editor")}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
+function exportBackup(){const payload={app:"Social Maker",version:2,exportedAt:new Date().toISOString(),profiles:state.profiles,projects:state.projects};downloadBlob(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),"social-maker-backup.json");toast("Backup exported. Keep it somewhere safe.")}
+async function importBackup(file){try{const parsed=JSON.parse(await file.text());if(!Array.isArray(parsed.profiles)||!Array.isArray(parsed.projects))throw Error("format");if(!confirm("Import backup and merge its profiles and projects with your current data? Matching IDs will be replaced."))return;const merge=(oldArr,newArr)=>{const map=new Map(oldArr.map(x=>[x.id,x]));newArr.forEach(x=>map.set(x.id,x));return [...map.values()]};state.profiles=merge(state.profiles,parsed.profiles);state.projects=merge(state.projects,parsed.projects);if(!state.profiles.some(p=>p.id==="profile-default"))state.profiles.unshift(defaultProfile);await dbSet("profiles",state.profiles);await dbSet("projects",state.projects);fillProfileSelects();renderProfiles();renderProjects();toast("Backup imported.")}catch{toast("Could not import this file. Choose a Social Maker JSON backup.")}}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight,center=false){const words=String(text||"").split(/\s+/);let line="";for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){ctx.textAlign=center?"center":"left";ctx.fillText(line,center?x+maxWidth/2:x,y);line=word;y+=lineHeight}else line=test}if(line){ctx.textAlign=center?"center":"left";ctx.fillText(line,center?x+maxWidth/2:x,y);y+=lineHeight}ctx.textAlign="left";return y}
+async function exportImage(){
+ const d=dataFromForm(),p=state.profiles.find(x=>x.id===d.displayProfile)||defaultProfile,platform=state.platform,w=860,pad=24,scale=1;
+ const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");let photoImg=null,avatarImg=null;
+ async function loadImage(src){return new Promise(resolve=>{if(!src){resolve(null);return}const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src=src})}
+ if(d.photo)photoImg=await loadImage(d.photo);if(p.photo)avatarImg=await loadImage(p.photo);
+ const bg=platform==="whatsapp"?"#e5ddd5":platform==="discord"||platform==="tiktok"?"#36393f":"#ffffff",fg=platform==="discord"||platform==="tiktok"?"#f5f5f7":"#17171b";
+ canvas.width=w;canvas.height=1200;
+ function drawAvatar(x,y,r,profile,img){ctx.save();ctx.beginPath();ctx.arc(x+r,y+r,r,0,Math.PI*2);ctx.clip();if(img)ctx.drawImage(img,x,y,r*2,r*2);else{ctx.fillStyle=d.accent;ctx.fillRect(x,y,r*2,r*2);ctx.fillStyle="#30263f";ctx.font="bold 24px Arial";ctx.textAlign="center";ctx.fillText((profile.avatar||profile.name.slice(0,2)).slice(0,4),x+r,y+r+8)}ctx.restore();ctx.textAlign="left"}
+ function roundedRect(x,y,ww,hh,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+ww,y,x+ww,y+hh,r);ctx.arcTo(x+ww,y+hh,x,y+hh,r);ctx.arcTo(x,y+hh,x,y,r);ctx.arcTo(x,y,x+ww,y,r);ctx.closePath();ctx.fill()}
+ ctx.fillStyle=bg;ctx.fillRect(0,0,w,canvas.height);let y=24;
+ if(platform==="whatsapp"){ctx.fillStyle="#52665b";ctx.font="20px Arial";ctx.textAlign="center";ctx.fillText("Chat · fictional conversation",w/2,y+10);ctx.textAlign="left";y+=40;roundedRect(w*.17,y,w*.78,105,18,"#d9fdd3");ctx.fillStyle="#1b1b1b";ctx.font="25px Arial";y=wrapText(ctx,d.bodyText,w*.17+18,y+35,w*.78-36,33)+10;ctx.fillStyle="#55765c";ctx.font="16px Arial";ctx.fillText(d.time,w*.85,y+5);y+=25}
+ else {
+  drawAvatar(pad,y,22,p,avatarImg);ctx.fillStyle=fg;ctx.font="bold 26px Arial";ctx.fillText(p.name,pad+58,y+18);ctx.fillStyle=platform==="discord"||platform==="tiktok"?"#bbb":"#777";ctx.font="19px Arial";ctx.fillText("@"+p.handle+" · "+d.time,pad+58,y+43);y+=76;
+  if(platform==="reddit"||platform==="tumblr"||platform==="facebook"){ctx.fillStyle=fg;ctx.font="bold 31px Arial";y=wrapText(ctx,d.platformTitle,pad,y,w-pad*2,38)+8}
+  ctx.fillStyle=fg;ctx.font=platform==="x"?"30px Arial":"25px Arial";y=wrapText(ctx,d.bodyText,pad,y,w-pad*2,34)+18;
+  if(d.showMedia){let mh=platform==="instagram"?w-2*pad:360;if(photoImg){const ratio=Math.min((w-pad*2)/photoImg.width,mh/photoImg.height);const iw=photoImg.width*ratio,ih=photoImg.height*ratio;ctx.fillStyle="#111";ctx.fillRect(pad,y,w-pad*2,mh);ctx.drawImage(photoImg,pad+(w-pad*2-iw)/2,y+(mh-ih)/2,iw,ih)}else{const grad=ctx.createLinearGradient(pad,y,w-pad*2,y+mh);grad.addColorStop(0,"#e8d8ff");grad.addColorStop(.5,"#f9d9e5");grad.addColorStop(1,"#d8e9ff");roundedRect(pad,y,w-pad*2,mh,12,grad);ctx.fillStyle="#443653";ctx.font="bold 30px Arial";ctx.textAlign="center";wrapText(ctx,d.mediaText,w/2-(w-pad*2)/2+20,y+mh/2,w-pad*2-40,38,true);ctx.textAlign="left"}y+=mh+20}
+  ctx.fillStyle=platform==="discord"||platform==="tiktok"?"#ddd":"#666";ctx.font="19px Arial";y=wrapText(ctx,"♡ "+d.likes+"     "+d.comments,pad,y,w-pad*2,27)+15;
+  if(d.showThread==="yes"&&state.messages.length){ctx.strokeStyle=platform==="discord"?"#4b4d54":"#ddd";ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();y+=14;for(const m of state.messages){const mp=state.profiles.find(x=>x.id===m.profileId)||defaultProfile;ctx.fillStyle=fg;ctx.font="bold 18px Arial";ctx.fillText(mp.name+"  ",pad,y+18);const nameW=ctx.measureText(mp.name+"  ").width;ctx.font="17px Arial";ctx.fillStyle=fg;y=wrapText(ctx,m.text,pad+nameW,y+18,w-pad*2-nameW,24)+9}}
+ }
+ canvas.height=Math.max(y+30,180);try{const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));if(blob){downloadBlob(blob,"social-maker-post.png");toast("Post image exported.")}else toast("Image export is unavailable in this browser.")}catch{toast("Image export failed. Try a smaller photo.")}
+}
+$("photoInput").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;if(!file.type.startsWith("image/")){toast("Choose an image file.");return}if(file.size>8*1024*1024){toast("Please choose an image under 8 MB for this local prototype.");e.target.value="";return}const reader=new FileReader();reader.onload=()=>{state.photo=reader.result;state.showMedia=true;updateMediaButton();updatePhotoStatus();render()};reader.readAsDataURL(file);e.target.value=""});
+$("removePhotoBtn").onclick=()=>{state.photo="";updatePhotoStatus();render()};
+$("mediaToggleBtn").onclick=()=>{state.showMedia=!state.showMedia;updateMediaButton();render()};
+$("addMessageBtn").onclick=()=>{const text=$("msgText").value.trim();if(!text){toast("Write a message first.");return}state.messages.push({id:uid(),profileId:$("msgProfile").value||state.profiles[0]?.id,time:$("msgTime").value||"now",text});$("msgText").value="";renderMessages();render()};
+$("clearMessagesBtn").onclick=()=>{if(state.messages.length&&!confirm("Clear all conversation messages from this unsaved editor?"))return;state.messages=[];renderMessages();render()};
+$("saveBtn").onclick=saveProject;$("exportImageBtn").onclick=exportImage;$("exportBackupBtn").onclick=exportBackup;$("exportAllBtn").onclick=exportBackup;
+$("importBackupBtn").onclick=()=>$("backupInput").click();$("backupInput").onchange=e=>{if(e.target.files?.[0])importBackup(e.target.files[0]);e.target.value=""};
+$("saveProfileBtn").onclick=saveProfile;$("clearProfileFormBtn").onclick=clearProfileForm;$("profilePhoto").onchange=e=>{const file=e.target.files?.[0];if(!file)return;if(file.size>5*1024*1024){toast("Choose a profile photo under 5 MB.");e.target.value="";return}const r=new FileReader();r.onload=()=>{state.profilePhoto=r.result;toast("Profile photo ready. Save the profile to keep it.")};r.readAsDataURL(file)};
+$("newProjectBtn").onclick=blankProject;$("newBtn").onclick=()=>{if(confirm("Start a blank project? Your saved projects will remain."))blankProject()};$("projectFilter").oninput=renderProjects;
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+["projectName","platformTitle","time","bodyText","mediaText","likes","accent","comments","showThread","displayProfile"].forEach(id=>$(id).addEventListener("input",render));
+$("displayProfile").addEventListener("change",render);
+async function init(){
+ db=await openDB();state.profiles=await dbGet("profiles")||[defaultProfile];if(!state.profiles.some(p=>p.id==="profile-default"))state.profiles.unshift(defaultProfile);state.projects=await dbGet("projects")||[];
+ fillProfileSelects();renderPlatforms();renderProfiles();renderProjects();renderMessages();setForm({projectName:"A little life update",platformTitle:"A little life update",time:"2h",bodyText:"Some moments deserve to be kept forever ✨",mediaText:"your photo goes here",likes:"1,284",accent:"#b7a4ff",comments:"This is so good!! 💜",displayProfile:state.profiles[0]?.id,showThread:"yes",showMedia:true,photo:"",platform:"instagram",messages:[]});
+ if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+}
+init();
+</script>
+</body>
+</html>

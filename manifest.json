@@ -1,0 +1,9 @@
+{
+  "name": "Social Maker \u2014 Personal Studio",
+  "short_name": "Social Maker",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101014",
+  "theme_color": "#17171c",
+  "description": "A personal, local-first fictional social post creator."
+}
