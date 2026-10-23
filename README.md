@@ -1,2 +1,0 @@
-# socmedmaker
-social media maker
